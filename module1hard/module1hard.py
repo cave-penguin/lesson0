@@ -10,6 +10,8 @@ sorted_students_list = sorted(students)
 # }
 students_dict = {}
 for i in range(len(grades)):
-    students_dict[sorted_students_list[i]] = sum(grades[i]) / len(grades[i])
+    grade = sum(grades[i]) / len(grades[i])
+    student = sorted_students_list[i]
+    students_dict[student] = grade
 print(students_dict)
 
