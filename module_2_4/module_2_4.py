@@ -7,7 +7,6 @@ not_primes = []
 # for i in numbers[1:]:
 #     counter = 0
 #     for j in numbers[1:]:
-#         is_prime = True
 #         if i % j == 0:
 #             counter += 1
 #     if counter == 1:
