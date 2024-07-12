@@ -2,10 +2,9 @@ import random
 
 first_stone = random.choice([i for i in range(3, 21)])
 
-second_stone = []
-
 
 def get_code(number):
+    second_stone = []
     get_all_list = []
     for i in range(1, number):
         for j in range(1, number):
