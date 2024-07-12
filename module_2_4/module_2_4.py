@@ -22,8 +22,7 @@ for i in numbers[1:]:
 # for i in numbers:
 #     if i != 0 or i != 1:
 #         is_prime = True
-#         half_list = numbers[1 : numbers.index(i)]
-#         for j in half_list:
+#         for j in numbers[1 : numbers.index(i)]:
 #             if i % j == 0:
 #                 is_prime = False
 #                 break
