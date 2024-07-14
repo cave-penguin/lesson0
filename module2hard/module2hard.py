@@ -8,7 +8,7 @@ def get_code(number):
     get_all_list = []
     for i in range(1, number):
         for j in range(1, number):
-            if number / (i + j) == int(number / (i + j)) and i != j:
+            if number % (i + j) == 0 and i != j:
                 get_all_list.append([i, j])
             else:
                 continue
