@@ -3,7 +3,6 @@ def print_params(a=1, b="строка", c=True):
 
 
 print_params("One")
-print_params(b=12)
 print_params()
 print_params(
     1,
