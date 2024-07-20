@@ -16,12 +16,7 @@ def calculate_structure_sum(args):
                 summa += value
             elif isinstance(value, str):
                 summa += len(value)
-            elif (
-                isinstance(value, list)
-                or isinstance(value, tuple)
-                or isinstance(value, dict)
-                or isinstance(value, set)
-            ):
+            else:
                 summa += calculate_structure_sum(value)
     else:
         for arg in args:
