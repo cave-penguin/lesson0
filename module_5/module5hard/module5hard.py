@@ -10,12 +10,12 @@ class User:
 
 
 class Video:
-    time_now = 0
-
+    
     def __init__(self, title, duration, adult_mode=False):
         self.title = title
         self.duration = duration
         self.adult_mode = adult_mode
+        self.time_now = 0
 
 
 class UrTube:
