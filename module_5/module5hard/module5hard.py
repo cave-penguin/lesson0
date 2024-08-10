@@ -65,7 +65,6 @@ class UrTube:
                                     print(video.time_now, end=" ")
                                     time.sleep(0.1)
                                 print("Конец видео")
-                                video.time_now = 0
 
         else:
             print("Войдите в аккаунт, чтобы смотреть видео")
