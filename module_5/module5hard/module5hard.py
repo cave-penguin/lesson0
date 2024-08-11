@@ -4,18 +4,17 @@ import time
 class User:
     def __init__(self, nickname, password, age):
         self.nickname = nickname
-        self.password = hash(password.encode()) if password else None
         self.password = hash(password)
         self.age = age
 
 
 class Video:
-    
+    time_now = 0
+
     def __init__(self, title, duration, adult_mode=False):
         self.title = title
         self.duration = duration
         self.adult_mode = adult_mode
-        self.time_now = 0
 
 
 class UrTube:
@@ -25,11 +24,11 @@ class UrTube:
 
     def log_in(self, nickname, password):
         for user in self.users:
-            if user["nickname"] is nickname and user["password"] is hash(password):
+            if user["nickname"] == nickname and user["password"] == hash(password):
                 self.current_user = nickname
 
     def register(self, nickname, password, age):
-        if any(user["nickname"] is nickname for user in self.users):
+        if any(user["nickname"] == nickname for user in self.users):
             print(f"Пользователь {nickname} уже существует")
         else:
             self.users.append(
@@ -52,11 +51,13 @@ class UrTube:
         return found_videos
 
     def watch_video(self, title):
-        if self.current_user:
+        if not self.current_user:
+            print("Войдите в аккаунт, чтобы смотреть видео")
+        else:
             for video in self.videos:
-                if video.title is title:
+                if video.title == title:
                     for user in self.users:
-                        if user["nickname"] is self.current_user:
+                        if user["nickname"] == self.current_user:
                             if user["age"] < 18 and video.adult_mode:
                                 print("Вам нет 18 лет, пожалуйста покиньте страницу")
                             else:
@@ -65,9 +66,7 @@ class UrTube:
                                     print(video.time_now, end=" ")
                                     time.sleep(0.1)
                                 print("Конец видео")
-
-        else:
-            print("Войдите в аккаунт, чтобы смотреть видео")
+                                video.time_now = 0
 
 
 ur = UrTube()
