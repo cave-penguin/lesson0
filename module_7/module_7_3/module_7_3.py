@@ -18,12 +18,14 @@ class WordsFinder:
         return all_words
 
     def find(self, word):
+        found_word = {}
         for file in self.file_names:
             for key, value in self.get_all_words().items():
                 if file == key:
                     for item in value:
                         if item.lower() == word.lower():
-                            return {file: value.index(item) + 1}
+                            found_word[file] = value.index(item) + 1
+        return found_word
 
     def count(self, word):
         count_word = {}
