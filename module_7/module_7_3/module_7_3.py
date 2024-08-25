@@ -7,7 +7,7 @@ class WordsFinder:
         chars_to_remove = [",", ".", "=", "!", "?", ";", ":", " - "]
         for file in self.file_names:
             with open(file) as f:
-                list_of_strings = f.read().lower().splitlines()
+                list_of_strings = f.read().lower().split('/n')
                 filtered_words = []
                 for string in list_of_strings:
                     filtered_string = string
