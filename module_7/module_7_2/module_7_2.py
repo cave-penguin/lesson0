@@ -9,11 +9,11 @@ def custom_write(file_name, strings):
         file = open(file_name, 'r')
         strings_in_file = file.read()
         file.close()
+        file = open(file_name, "a")
         if string not in strings_in_file:
-            file = open(file_name, "a")
             bytes_number.append(file.tell())
             file.write(f"{string}\n")
-            file.close()
+        file.close()
     file = open(file_name, "r")
     strings_from_file = file.read().split('\n')
     file.close()
