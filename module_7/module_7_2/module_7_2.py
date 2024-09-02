@@ -4,7 +4,7 @@ def custom_write(file_name, strings):
         for index, string in enumerate(strings, 1):
             positions[(index, file.tell())] = string
             file.write(f"{string}\n")
-    return dict(zip(positions, strings))
+    return positions
 
 
 info = [
