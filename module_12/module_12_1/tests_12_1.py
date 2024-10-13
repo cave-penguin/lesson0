@@ -3,39 +3,63 @@ from unittest import TestCase
 
 class Runner:
     def __init__(self, name):
+        """
+        Initialize the Runner with a name and set initial distance to 0.
+
+        :param name: The name of the runner.
+        """
         self.name = name
         self.distance = 0
 
     def run(self):
+        """
+        Simulate running by increasing the runner's distance by 10 units.
+        """
         self.distance += 10
 
     def walk(self):
+        """
+        Simulate walking by increasing the runner's distance by 5 units.
+        """
         self.distance += 5
 
     def __str__(self):
+        """
+        Return a string representation of the Runner object, which is the runner's name.
+
+        :return: The name of the runner.
+        """
         return self.name
 
 
 class RunnerTest(TestCase):
+    def setUp(self):
+        self.runner_1 = Runner("Ivan")
+        self.runner_2 = Runner("Alex")
+        self.runner_3 = Runner("Micky")
+        self.runner_4 = Runner("Max")
+
     def test_walk(self):
         """
         Test for walk method in Runner
-        :return:
+
+        This test ensures that after calling walk 10 times,
+        the runner's distance increases by 50 units.
         """
-        runner_1 = Runner("Ivan")
         for _ in range(10):
-            runner_1.walk()
-        self.assertEqual(runner_1.distance, 50)
+            self.runner_1.walk()
+        self.assertEqual(self.runner_1.distance, 50)
 
     def test_run(self):
         """
         Test for run method in Runner
-        :return:
+
+        This test ensures that after calling run 10 times,
+        the runner's distance increases by 100 units.
         """
-        runner_1 = Runner("Alex")
         for _ in range(10):
-            runner_1.run()
-        self.assertEqual(runner_1.distance, 100)
+            self.runner_2.run()
+        self.assertEqual(self.runner_2.distance, 100)
 
     def test_challenge(self):
         """
@@ -44,12 +68,10 @@ class RunnerTest(TestCase):
         Micky runs and Max walks for 10 times.
         At the end of challenge, their distances are compared.
         """
-        runner_1 = Runner("Micky")
-        runner_2 = Runner("Max")
         for _ in range(10):
-            runner_1.run()
-            runner_2.walk()
-        self.assertNotEqual(runner_1.distance, runner_2.distance)
+            self.runner_3.run()
+            self.runner_4.walk()
+        self.assertNotEqual(self.runner_3.distance, self.runner_4.distance)
 
 
 RunnerTest()
