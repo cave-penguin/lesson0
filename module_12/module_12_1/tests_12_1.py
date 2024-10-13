@@ -1,4 +1,4 @@
-from unittest import TestCase
+import unittest
 
 
 class Runner:
@@ -32,7 +32,7 @@ class Runner:
         return self.name
 
 
-class RunnerTest(TestCase):
+class RunnerTest(unittest.TestCase):
     def setUp(self):
         self.runner_1 = Runner("Ivan")
         self.runner_2 = Runner("Alex")
@@ -74,4 +74,5 @@ class RunnerTest(TestCase):
         self.assertNotEqual(self.runner_3.distance, self.runner_4.distance)
 
 
-RunnerTest()
+if __name__ == "__main__":
+    unittest.main()
