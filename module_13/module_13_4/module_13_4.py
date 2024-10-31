@@ -1,5 +1,6 @@
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.utils import executor
 
@@ -19,27 +20,27 @@ class UserState(StatesGroup):
 
 
 @dp.message_handler(text="Calories")
-async def set_age(message):
+async def set_age(message: types.Message):
     await message.answer('Введите свой возраст:')
     await UserState.age.set()
 
 
 @dp.message_handler(state=UserState.age)
-async def set_growth(message, state):
+async def set_growth(message: types.Message, state: FSMContext):
     await state.update_data(user_age=message.text)
     await message.answer('Введите свой рост:')
     await UserState.growth.set()
 
 
 @dp.message_handler(state=UserState.growth)
-async def set_weight(message, state):
+async def set_weight(message: types.Message, state: FSMContext):
     await state.update_data(user_growth=message.text)
     await message.answer('Введите свой вес:')
     await UserState.weight.set()
 
 
 @dp.message_handler(state=UserState.weight)
-async def send_calories(message, state):
+async def send_calories(message: types.Message, state: FSMContext):
     await state.update_data(user_weight=message.text)
     data = await state.get_data()
     result = calc_calories(data['user_age'], data['user_growth'], data['user_weight'])
@@ -48,12 +49,12 @@ async def send_calories(message, state):
 
 
 @dp.message_handler(commands='start')
-async def start(message):
+async def start(message: types.Message):
     await message.answer('Привет! Я бот помогающий твоему здоровью.')
 
 
 @dp.message_handler()
-async def all_messages(message):
+async def all_messages(message: types.Message):
     await message.answer('Введите команду /start, чтобы начать общение.')
 
 
